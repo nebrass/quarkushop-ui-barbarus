@@ -1,0 +1,33 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <h2>Barbarus Dashboard</h2>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="!authenticated">
+      <h3>Login form</h3>
+      <div *ngIf="ready">
+
+        <ngx-qrcode
+          [elementType]="elementType"
+          [errorCorrectionLevel]="errorCorrectionLevel"
+          [value]="barbarusLoginJson">
+        </ngx-qrcode>
+
+        <strong>Barbarus ViewId</strong>: {{barbarusLogin.viewId}} <br/>
+        <strong>Client Authentication URL</strong>: <a [href]="barbarusLogin.loginUrl">{{barbarusLogin.loginUrl}}</a>
+
+      </div>
+    </div>
+
+    <div *ngIf="authenticated">
+      <div *ngIf="visible">
+        <h3 style="color: green">Authentication succeeded!</h3>
+      </div>
+      <button (click)="refresh()" class="btn btn-primary m-1">RefreshToken</button>
+      <button (click)="logout()" class="btn btn-danger">Logout</button>
+    </div>
+
+  </div>
+</div>

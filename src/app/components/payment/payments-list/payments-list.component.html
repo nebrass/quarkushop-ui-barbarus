@@ -1,0 +1,58 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        [(ngModel)]="title"
+        class="form-control"
+        placeholder="Search by title"
+        type="text"
+      />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Payments List</h4>
+    <ul class="list-group">
+      <li
+        (click)="setActivePayment(payment, i)"
+        *ngFor="let payment of payments; let i = index"
+        [class.active]="i == currentIndex"
+        class="list-group-item"
+      >
+        {{ payment.orderId }} - {{ payment.status }}
+      </li>
+    </ul>
+
+    <button (click)="removeAllPayments()" class="m-3 btn btn-sm btn-danger">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentPayment">
+      <h4>Payment</h4>
+      <div>
+        <label><strong>Id:</strong></label> {{ currentPayment.id }}
+      </div>
+      <div>
+        <label><strong>OrderId:</strong></label>
+        {{ currentPayment.orderId }}
+      </div>
+      <div>
+        <label><strong>PaypalPaymentId:</strong></label>
+        {{ currentPayment.paypalPaymentId }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentPayment.status }}
+      </div>
+
+      <a class="btn btn-warning" routerLink="/payments/{{ currentPayment.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentPayment">
+      <br/>
+      <p>Please click on a Payment...</p>
+    </div>
+  </div>
+</div>

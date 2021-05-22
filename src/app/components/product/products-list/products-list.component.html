@@ -1,0 +1,62 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        [(ngModel)]="title"
+        class="form-control"
+        placeholder="Search by title"
+        type="text"
+      />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Products List</h4>
+    <ul class="list-group">
+      <li
+        (click)="setActiveProduct(product, i)"
+        *ngFor="let product of products; let i = index"
+        [class.active]="i == currentIndex"
+        class="list-group-item"
+      >
+        {{ product.name }} - {{ product.price }}$
+      </li>
+    </ul>
+
+    <button (click)="removeAllProducts()" class="m-3 btn btn-sm btn-danger">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentProduct">
+      <h4>Product</h4>
+      <div>
+        <label><strong>Name:</strong></label> {{ currentProduct.name }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentProduct.description }}
+      </div>
+      <div>
+        <label><strong>Price:</strong></label>
+        {{ currentProduct.price }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentProduct.status }}
+      </div>
+      <div>
+        <label><strong>SalesCounter:</strong></label>
+        {{ currentProduct.salesCounter }}
+      </div>
+
+      <a class="btn btn-warning" routerLink="/products/{{ currentProduct.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentProduct">
+      <br/>
+      <p>Please click on a Product...</p>
+    </div>
+  </div>
+</div>

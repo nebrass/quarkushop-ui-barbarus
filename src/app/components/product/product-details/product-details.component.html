@@ -1,0 +1,77 @@
+<div style="width: 400px; margin: auto;">
+  <div *ngIf="currentProduct" class="edit-form">
+    <h4>Product</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          [(ngModel)]="currentProduct.name"
+          class="form-control"
+          id="name"
+          name="name"
+          type="text"/>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          [(ngModel)]="currentProduct.description"
+          class="form-control"
+          id="description"
+          name="description"
+          type="text"/>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input
+          [(ngModel)]="currentProduct.price"
+          class="form-control"
+          id="price"
+          name="price"
+          type="text"/>
+      </div>
+
+      <div class="form-group">
+        <label for="salesCounter">SalesCounter</label>
+        <input
+          [(ngModel)]="currentProduct.salesCounter"
+          class="form-control"
+          id="salesCounter"
+          name="salesCounter"
+          type="text"/>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <input
+          [(ngModel)]="currentProduct.status"
+          class="form-control"
+          id="status"
+          name="status"
+          type="text"/>
+      </div>
+
+
+    </form>
+
+
+    <button (click)="deleteProduct()" class="btn btn-danger mr-2">
+      Delete
+    </button>
+
+    <button
+      (click)="updateProduct()"
+      class="btn btn-success"
+      type="submit"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentProduct">
+    <br/>
+    <p>Cannot access this Product...</p>
+  </div>
+</div>
